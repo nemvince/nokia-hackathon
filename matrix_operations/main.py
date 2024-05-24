@@ -37,8 +37,6 @@ for op in operations:
     matrices[f"M{a}{b}"] = multiplication(matrices[a], matrices[b])
     op[idx-1:idx+2] = [f"M{a}{b}"]
     
-  print(op)
-    
   op = [matrices[x] for x in op if x in matrices]
   
   result = multiadd(*op)
