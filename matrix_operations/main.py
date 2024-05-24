@@ -1,5 +1,3 @@
-import re
-
 with open('./input.txt', 'r') as f:
   input = f.read().strip().split("\n\n")
 
@@ -18,7 +16,6 @@ def addition(a, b):
   return [[a[i][j] + b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
 
 def multiadd(*args):
-  print(args)
   result = args[0]
   for arg in args[1:]:
     result = addition(result, arg)
@@ -33,20 +30,18 @@ final = []
 for op in operations:
   oop = op
   op = op.split()
-  to_be_evaluated = []
   while "*" in op:
-    i = op.index("*")
-    b = op.pop(i+1)
-    _ = op.pop(i)
-    a = op.pop(i-1)
-    to_be_evaluated.append(f"multiplication(matrices['{a}'], matrices['{b}'])")
-
-  op = [x for x in op if x != "+"] 
-  for x in op:
-    to_be_evaluated.append(f"matrices['{x}']")
-
-  result = eval(f"multiadd({', '.join(to_be_evaluated)})")
+    idx = op.index("*")
+    a = op[idx-1]
+    b = op[idx+1]
+    matrices[f"M{a}{b}"] = multiplication(matrices[a], matrices[b])
+    op[idx-1:idx+2] = [f"M{a}{b}"]
+    
+  print(op)
+    
+  op = [matrices[x] for x in op if x in matrices]
   
+  result = multiadd(*op)
   final.append(f"{oop}\n" + "\n".join([" ".join(map(str, x)) for x in result]))
   
 print("\n\n".join(final))
