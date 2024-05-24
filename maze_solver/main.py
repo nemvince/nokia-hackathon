@@ -8,68 +8,66 @@ for maze in data:
   temp = maze.split("\n")
   mazes.append([temp[0], temp[1::]])
 
-directions = [
-  (-1, 0, 'U '),
-  (1, 0, 'D '),
-  (0, -1, 'L '),
-  (0, 1, 'R '),
-]
+dmap = {
+    (1, 0): "D ",
+    (-1, 0): "U ",
+    (0, 1): "R ",
+    (0, -1): "L "
+}
 
-def bfs(maze, start, goal):
-  queue = deque([start])
-  visited = set()
-  visited.add(start)
-  parent = {start: None}
+def bfs(maze, start):
+  r, c = start
+  queue = deque()
+  visited = {}
+  visited[(r, c)] = (-1, -1)
+  queue.append((r, c))
   
   while queue:
-      current = queue.popleft()
-      
-      if current == goal:
-        path = []
-        while current:
-          path.append(current)
-          current = parent[current]
-        path.reverse()
-        return path
+    r, c = queue.popleft()
+    
+    if maze[r][c] == 'G':
+      path = []
+      while r != -1:
+        path.append((r, c))
+        r, c = visited[(r, c)]
+      path.reverse()
+      return path
+    
+    for dx, dy in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
+      new_r, new_c = r + dy, c + dx
         
-      r, c = current
-      for dr, dc, _ in directions:
-        nr, nc = r + dr, c + dc
-        if (0 <= nr < len(maze) and 0 <= nc < len(maze[0]) and
-          maze[nr][nc] != '#' and (nr, nc) not in visited):
-          queue.append((nr, nc))
-          visited.add((nr, nc))
-          parent[(nr, nc)] = current
-
-  return None
+      if (0 <= new_r < len(maze) and 
+        0 <= new_c < len(maze[0]) and 
+        (new_r, new_c) not in visited and
+        maze[new_r][new_c] != '#'):
+        
+        visited[(new_r, new_c)] = (r, c)
+        queue.append((new_r, new_c))
 
 final = []
 
 for maze in mazes:
   name = maze[0]
-  maze = maze[1]
-  start, goal = None, None
+  maze = [x.replace(' ', '').replace('.', ' ') for x in maze[1]]
+  start = None
   for i, e in enumerate(maze):
     try:
       start = (i, e.index("S"))
     except ValueError:
-      try:
-        goal = (i, e.index("G"))
-      except ValueError:
-        pass
-    
+      pass
   
-  path = bfs(maze, start, goal)
+  path = bfs(maze, start)
+  
   output = "S "
-  
   for i in range(1, len(path)):
-    r1, c1 = path[i-1]
-    r2, c2 = path[i]
-    for dr, dc, d in directions:
-      if (r1 + dr == r2) and (c1 + dc == c2):
-        output += d
-        break
+    prev_x, prev_y = path[i - 1]
+    curr_x, curr_y = path[i]
+    
+    diff = (curr_x - prev_x, curr_y - prev_y)
+    
+    output += dmap[diff]
   output += "G"
+  
   final.append(f"{name}\n{output}")
 
 print('\n\n'.join(final))
