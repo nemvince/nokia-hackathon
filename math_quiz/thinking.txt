@@ -1,7 +1,10 @@
 1.
-
+5 másodperc alatt egy vonatnyi
+20 másodperc alatt 300m+1 vonatnyi ("a vége el nem hagyja")
+300m -> 3*vonat hossz -> a vonat 100m hosszú
 
 2.
+valahogy ki kéne vágni csak a 8cm-es kockát és akkor marad 8^3 cm^3 térfogatunk
 
 
 3.
