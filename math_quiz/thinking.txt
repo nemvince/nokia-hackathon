@@ -1,0 +1,46 @@
+1.
+
+
+2.
+
+
+3.
+Juliska x kmt biciklizik, és 20–x km-t gyalogol, akkor
+(x/10)+(20-x)/4 óra
+alatt ér el a házig.
+Jancsi x km-t gyalogol, és 20–x km-t biciklizik, akkor
+(x/5)+(20-x)/12 óra
+alatt ér el a házig.
+(x/10)+(20-x)/4 = (x/5)+(20-x)/12 -> x=12,5 km. 
+
+4.
+Mivel az origó 0, x^2+y^2=5^2.
+
+X,Y lehet +/- (0,5 vagy 5,0) -> 4 lehetőség.
+X,Y lehet +/- (3,4 vagy 4,3) -> 8 lehetőség.
+
+5.
+
+
+6.
+
+
+7.
+21 golyó hogy legyen piros -> 20 golyó nem piros -> 10 piros golyó van
+
+
+8.
+Középen van 1 négyzet, 85-1=84, 84/4=21
+Átló = 2*21+1=43cm, ezáltal egy oldal is 43cm,
+T = 43*43 = 1849cm^2
+
+9.
+összes résztvevő -> x
+mindenki köszön az összes *többi* résztvevőnek
+x(x-1)=198+308
+ebből másodfokú egyenlet
+x^2-x-506=0
+x=−22 -> nem létezik negatív ember
+x=23 -> 23 ember vett részt
+
+minden angol x-1=22 embernek köszönt goodybe-t így 198/22=9 angol, és 23−9=14 magyar vett részt a találkozón.
