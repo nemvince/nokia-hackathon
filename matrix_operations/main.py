@@ -17,6 +17,13 @@ for entry in temp:
 def addition(a, b):
   return [[a[i][j] + b[i][j] for j in range(len(a[0]))] for i in range(len(a))]
 
+def multiadd(*args):
+  print(args)
+  result = args[0]
+  for arg in args[1:]:
+    result = addition(result, arg)
+  return result
+
 def multiplication(a, b):
   return [[sum(c * d for c, d in zip(ar, bc)) 
             for bc in zip(*b)]
@@ -24,16 +31,22 @@ def multiplication(a, b):
 
 final = []
 for op in operations:
-  matrix_names = re.findall(r'[A-Z]', op)
-  ops = re.findall(r'[*+]', op)
+  oop = op
+  op = op.split()
+  to_be_evaluated = []
+  while "*" in op:
+    i = op.index("*")
+    b = op.pop(i+1)
+    _ = op.pop(i)
+    a = op.pop(i-1)
+    to_be_evaluated.append(f"multiplication(matrices['{a}'], matrices['{b}'])")
+
+  op = [x for x in op if x != "+"] 
+  for x in op:
+    to_be_evaluated.append(f"matrices['{x}']")
+
+  result = eval(f"multiadd({', '.join(to_be_evaluated)})")
   
-  result = matrices[matrix_names[0]]
-  for i in range(len(ops)):
-    if ops[i] == "+":
-      result = addition(result, matrices[matrix_names[i+1]])
-    else:
-      result = multiplication(result, matrices[matrix_names[i+1]])
-  
-  final.append(f"{op}\n" + "\n".join([" ".join(map(str, x)) for x in result]))
+  final.append(f"{oop}\n" + "\n".join([" ".join(map(str, x)) for x in result]))
   
 print("\n\n".join(final))
