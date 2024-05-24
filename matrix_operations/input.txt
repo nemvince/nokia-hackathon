@@ -58,4 +58,3 @@ A + B
 B + B + A
 C + D + D + C
 E * F + I * J
-E * F + I * J
