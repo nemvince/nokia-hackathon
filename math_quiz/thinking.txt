@@ -6,7 +6,6 @@
 2.
 valahogy ki kéne vágni csak a 8cm-es kockát és akkor marad 8^3 cm^3 térfogatunk
 
-
 3.
 Juliska x kmt biciklizik, és 20–x km-t gyalogol, akkor
 (x/10)+(20-x)/4 óra
@@ -26,11 +25,18 @@ X,Y lehet +/- (3,4 vagy 4,3) -> 8 lehetőség.
 Feltételezés -> Koordináta egész szám -> 1
 T = (1/2) |x1(y2 − y3) + x2(y3 − y1) + x3(y1 − y2)|
 T = (1/2) |0(0-6) + 3(6-4) + 2(4-0)| = 5
-Akkor legyen 2, mivel több egész számom nincs
+Akkor legyen 2, mivel több egész számom nincs (0-3 között)
 T = (1/2) |0(0-6) + 3(6-4) + 2(4-0)| = 7 -> C = (2;6)
 
 6.
+A, B, C emberek, A és B C-re lő
+a = BC, b = AC, c = AB, c > b
+γ <= 60°
 
+c^2 = a^2 + b^2 - 2ab * cos(γ) <= a^2 + b^2 - ab = a * (a - b) + b^2 < b^2 < c^2 -> ellentmondás
+Ha több ember lő egy személyre, akkor a két lövési útvonal közötti szögnek 60 foknál nagyobbnak kell lennie.
+360°/60°=6
+Így legfeljebb öt lövő között lehet egyenként 60 foknál nagyobb szög bármelyik kettő között.
 
 7.
 21 golyó hogy legyen piros -> 20 golyó nem piros -> 10 piros golyó van
