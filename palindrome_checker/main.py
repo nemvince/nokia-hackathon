@@ -3,13 +3,11 @@ import re
 with open('./input.txt', 'r') as f:
   data = f.read().strip().split("\n")
 
-pattern = re.compile(r'[\W_]+')
-
 for word in data:
-  word = pattern.sub('', word)
-  word = word.lower()
+  word = re.compile(r'[\W_]+').sub('', word).lower()
   if word == word[::-1]:
-    unique = len(set(word))
-    print(f"YES, {unique}")
+    print(f"YES, {len(set(word))}")
   else:
     print("NO, -1")
+    
+# code golfed :)

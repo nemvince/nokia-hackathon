@@ -1,12 +1,16 @@
 from collections import deque
 
-with open('./input.txt', 'r') as f:
-  data = f.read().strip().split("\n\n")
+def read_input(input_file = "./input.txt"):
+  with open('./input.txt', 'r') as f:
+    data = f.read().strip().split("\n\n")
 
-mazes = []
-for maze in data:
-  temp = maze.split("\n")
-  mazes.append([temp[0], temp[1::]])
+  mazes = []
+  for entry in data:
+    temp = entry.split("\n")
+    maze = [x.replace(' ', '') for x in temp[1::]]
+    mazes.append([temp[0], maze])
+
+  return mazes
 
 dmap = {
     (1, 0): "D ",
@@ -33,7 +37,7 @@ def bfs(maze, start):
       path.reverse()
       return path
     
-    for dx, dy in [(-1, 0), (0, -1), (1, 0), (0, 1)]:
+    for dx, dy in dmap.keys():
       new_r, new_c = r + dy, c + dx
         
       if (0 <= new_r < len(maze) and 
@@ -44,18 +48,7 @@ def bfs(maze, start):
         visited[(new_r, new_c)] = (r, c)
         queue.append((new_r, new_c))
 
-final = []
-
-for maze in mazes:
-  name = maze[0]
-  maze = [x.replace(' ', '').replace('.', ' ') for x in maze[1]]
-  start = None
-  for i, e in enumerate(maze):
-    try:
-      start = (i, e.index("S"))
-    except ValueError:
-      pass
-  
+def solve_maze(maze, start):
   path = bfs(maze, start)
   
   output = "S "
@@ -68,6 +61,25 @@ for maze in mazes:
     output += dmap[diff]
   output += "G"
   
-  final.append(f"{name}\n{output}")
+  return output
 
-print('\n\n'.join(final))
+def parse_mazes(mazes):
+  final = []
+
+  for maze in mazes:
+    name, maze = maze
+    start = None
+    for i, e in enumerate(maze):
+      try:
+        start = (i, e.index("S"))
+      except ValueError:
+        pass
+
+    final.append(f"{name}\n{solve_maze(maze, start)}")
+    
+  return final
+
+if __name__ == "__main__":
+  final = parse_mazes(read_input())
+
+  print('\n\n'.join(final))
