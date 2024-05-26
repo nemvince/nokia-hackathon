@@ -23,14 +23,17 @@ X,Y lehet +/- (0,5 vagy 5,0) -> 4 lehetőség.
 X,Y lehet +/- (3,4 vagy 4,3) -> 8 lehetőség.
 
 5.
-
+Feltételezés -> Koordináta egész szám -> 1
+T = (1/2) |x1(y2 − y3) + x2(y3 − y1) + x3(y1 − y2)|
+T = (1/2) |0(0-6) + 3(6-4) + 2(4-0)| = 5
+Akkor legyen 2, mivel több egész számom nincs
+T = (1/2) |0(0-6) + 3(6-4) + 2(4-0)| = 7 -> C = (2;6)
 
 6.
 
 
 7.
 21 golyó hogy legyen piros -> 20 golyó nem piros -> 10 piros golyó van
-
 
 8.
 Középen van 1 négyzet, 85-1=84, 84/4=21
